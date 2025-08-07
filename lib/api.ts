@@ -2,7 +2,7 @@ import axios from "axios"
 
 // Create axios instance with base configuration
 export const api = axios.create({
-  baseURL: "http://localhost:5001/api",
+  baseURL: "https://womecare-backend.onrender.com/api", // ✅ Changed from localhost to Render
   headers: {
     "Content-Type": "application/json",
   },
