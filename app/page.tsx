@@ -2,8 +2,23 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Heart, Shield, Users, Baby, Calendar, MapPin, AlertTriangle, MessageCircle } from "lucide-react"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  Heart,
+  Shield,
+  Users,
+  Baby,
+  Calendar,
+  MapPin,
+  AlertTriangle,
+  MessageCircle,
+} from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 
@@ -16,7 +31,6 @@ export default function HomePage() {
   })
 
   useEffect(() => {
-    // Simulate loading stats
     setStats({
       totalUsers: 1250,
       activeSOS: 3,
@@ -28,42 +42,48 @@ export default function HomePage() {
     {
       icon: Shield,
       title: "Emergency SOS",
-      description: "Instant emergency alerts with location sharing to your trusted contacts",
+      description:
+        "Instant emergency alerts with location sharing to your trusted contacts",
       color: "text-red-500",
       bgColor: "bg-red-50",
     },
     {
       icon: MapPin,
       title: "Location Tracking",
-      description: "Safe location monitoring and sharing with family members",
+      description:
+        "Safe location monitoring and sharing with family members",
       color: "text-blue-500",
       bgColor: "bg-blue-50",
     },
     {
       icon: Calendar,
       title: "Period Tracker",
-      description: "Track your menstrual cycle with predictions and health insights",
+      description:
+        "Track your menstrual cycle with predictions and health insights",
       color: "text-pink-500",
       bgColor: "bg-pink-50",
     },
     {
       icon: Baby,
       title: "Maternity Care",
-      description: "Comprehensive pregnancy tracking with weekly guides and tools",
+      description:
+        "Comprehensive pregnancy tracking with weekly guides and tools",
       color: "text-purple-500",
       bgColor: "bg-purple-50",
     },
     {
       icon: Users,
       title: "Emergency Contacts",
-      description: "Manage trusted contacts for emergency situations",
+      description:
+        "Manage trusted contacts for emergency situations",
       color: "text-green-500",
       bgColor: "bg-green-50",
     },
     {
       icon: MessageCircle,
       title: "Community Forum",
-      description: "Connect with other women and share experiences safely",
+      description:
+        "Connect with other women and share experiences safely",
       color: "text-indigo-500",
       bgColor: "bg-indigo-50",
     },
@@ -121,7 +141,9 @@ export default function HomePage() {
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-pink-600">{stats.totalUsers.toLocaleString()}+</div>
+                <div className="text-3xl font-bold text-pink-600">
+                  {stats.totalUsers.toLocaleString()}+
+                </div>
                 <div className="text-gray-600">Women Protected</div>
               </div>
               <div className="text-center">
@@ -129,7 +151,9 @@ export default function HomePage() {
                 <div className="text-gray-600">Active Alerts</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">{stats.communityPosts}+</div>
+                <div className="text-3xl font-bold text-purple-600">
+                  {stats.communityPosts}+
+                </div>
                 <div className="text-gray-600">Community Posts</div>
               </div>
             </div>
@@ -141,7 +165,9 @@ export default function HomePage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Comprehensive Women's Healthcare</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Comprehensive Women's Healthcare
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Everything you need to stay safe, healthy, and connected in one secure platform
             </p>
@@ -174,7 +200,9 @@ export default function HomePage() {
                 <AlertTriangle className="h-12 w-12 text-red-600" />
               </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Emergency? Help is One Tap Away</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              Emergency? Help is One Tap Away
+            </h2>
             <p className="text-xl text-gray-600 mb-8">
               Our SOS feature instantly alerts your emergency contacts with your exact location, ensuring help reaches
               you when you need it most.
@@ -204,7 +232,9 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-pink-600 to-purple-600">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Join Thousands of Women Who Trust Womecare</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+            Join Thousands of Women Who Trust Womecare
+          </h2>
           <p className="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
             Start your journey to better health and safety today. It's free, secure, and designed just for you.
           </p>
