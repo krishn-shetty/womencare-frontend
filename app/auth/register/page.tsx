@@ -1,19 +1,30 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { Heart, User, Mail, Phone, Calendar } from "lucide-react"
-import { useAuth } from "@/hooks/use-auth"
+import type React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Heart, User, Mail, Phone, Calendar, Lock } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -23,43 +34,47 @@ export default function RegisterPage() {
     age: "",
     blood_group: "",
     medical_conditions: "",
-  })
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState("")
+    password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { register } = useAuth()
-  const router = useRouter()
+  const { register } = useAuth();
+  const router = useRouter();
 
-  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError("")
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
     try {
-      await register(formData)
-      router.push("/dashboard")
+      await register(formData);
+      router.push("/dashboard");
     } catch (err: any) {
-      setError(err.message || "Registration failed. Please try again.")
+      setError(err.message || "Registration failed. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50 flex items-center justify-center p-4">
@@ -71,13 +86,17 @@ export default function RegisterPage() {
             </div>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Join Womecare</h1>
-          <p className="text-gray-600 mt-2">Create your account to get started</p>
+          <p className="text-gray-600 mt-2">
+            Create your account to get started
+          </p>
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle>Create Account</CardTitle>
-            <CardDescription>Fill in your details to create your Womecare account</CardDescription>
+            <CardDescription>
+              Fill in your details to create your Womecare account
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -87,6 +106,7 @@ export default function RegisterPage() {
                 </Alert>
               )}
 
+              {/* Name */}
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <div className="relative">
@@ -104,6 +124,7 @@ export default function RegisterPage() {
                 </div>
               </div>
 
+              {/* Email */}
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
                 <div className="relative">
@@ -121,6 +142,7 @@ export default function RegisterPage() {
                 </div>
               </div>
 
+              {/* Phone */}
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone Number</Label>
                 <div className="relative">
@@ -138,6 +160,7 @@ export default function RegisterPage() {
                 </div>
               </div>
 
+              {/* Age + Blood Group */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="age">Age</Label>
@@ -159,7 +182,11 @@ export default function RegisterPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="blood_group">Blood Group</Label>
-                  <Select onValueChange={(value) => handleSelectChange("blood_group", value)}>
+                  <Select
+                    onValueChange={(value) =>
+                      handleSelectChange("blood_group", value)
+                    }
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
@@ -174,8 +201,11 @@ export default function RegisterPage() {
                 </div>
               </div>
 
+              {/* Medical Conditions */}
               <div className="space-y-2">
-                <Label htmlFor="medical_conditions">Medical Conditions (Optional)</Label>
+                <Label htmlFor="medical_conditions">
+                  Medical Conditions (Optional)
+                </Label>
                 <Textarea
                   id="medical_conditions"
                   name="medical_conditions"
@@ -186,7 +216,36 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700" disabled={isLoading}>
+              {/* Password */}
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="pl-10"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-2 text-sm text-gray-500"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full bg-pink-600 hover:bg-pink-700"
+                disabled={isLoading}
+              >
                 {isLoading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
@@ -194,7 +253,10 @@ export default function RegisterPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
-                <Link href="/auth/login" className="text-pink-600 hover:text-pink-700 font-medium">
+                <Link
+                  href="/auth/login"
+                  className="text-pink-600 hover:text-pink-700 font-medium"
+                >
                   Sign in
                 </Link>
               </p>
@@ -216,5 +278,5 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
